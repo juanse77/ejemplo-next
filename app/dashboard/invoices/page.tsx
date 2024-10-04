@@ -20,9 +20,12 @@ export default async function Page( {
     };
 } ) {
 
-    const { query, page } = await searchParams;
-    const currentPage = Number( page ) || 1;
-    const totalPages = await fetchInvoicesPages( query ?? "" );
+    const currentPage = Number( searchParams?.page ) || 1;
+    const aux_query = searchParams?.query || '';
+
+    console.log(`Query: ${aux_query}`);
+
+    const totalPages = await fetchInvoicesPages( aux_query );
 
     return (
         <div className="w-full">
@@ -33,8 +36,8 @@ export default async function Page( {
                 <Search placeholder="Search invoices..." />
                 <CreateInvoice />
             </div>
-            <Suspense key={ query + currentPage } fallback={ <InvoicesTableSkeleton /> }>
-                <Table query={ query } currentPage={ currentPage } />
+            <Suspense key={ aux_query + currentPage } fallback={ <InvoicesTableSkeleton /> }>
+                <Table query={ aux_query } currentPage={ currentPage } />
             </Suspense>
             <div className="mt-5 flex w-full justify-center">
                 <Pagination totalPages={ totalPages } />
