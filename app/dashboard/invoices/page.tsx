@@ -7,6 +7,11 @@ import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
 
 import { fetchInvoicesPages } from '@/app/lib/data';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Invoices',
+};
 
 export default async function Page( {
     searchParams = {
@@ -23,7 +28,7 @@ export default async function Page( {
     const currentPage = Number( searchParams?.page ) || 1;
     const aux_query = searchParams?.query || '';
 
-    console.log(`Query: ${aux_query}`);
+    console.log( `Query: ${ aux_query }` );
 
     const totalPages = await fetchInvoicesPages( aux_query );
 
