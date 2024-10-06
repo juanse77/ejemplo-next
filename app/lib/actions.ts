@@ -32,7 +32,7 @@ export async function createInvoice( prevState: State, formData: FormData ) {
     if ( !validatedFields.success ) {
         return {
             errors: validatedFields.error.flatten().fieldErrors,
-            message: 'Missing Fields. Failed to Create Invoice.',
+            message: 'There are errors in the form. Please check the values.',
         };
     }
 
@@ -72,7 +72,7 @@ export async function updateInvoice(
     if ( !validatedFields.success ) {
         return {
             errors: validatedFields.error.flatten().fieldErrors,
-            message: 'Missing Fields. Failed to Update Invoice.',
+            message: 'There are errors in the form. Please check the values.',
         };
     }
 
